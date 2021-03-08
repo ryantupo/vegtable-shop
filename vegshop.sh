@@ -47,7 +47,7 @@ Avocado=200
 name=""
 phoneNumber=""
 
-
+#get customer data 
 function getDetails(){
   read -r -p "What is your name?" name
   echo
@@ -178,9 +178,7 @@ echo "--------------------|----------------------"
 
 }
 
-
 #----------------------main code--------------------- 
-
 
 #prints menu
 menu
@@ -212,9 +210,6 @@ do
         fi
 
 done
-
-
-
 
 
 
