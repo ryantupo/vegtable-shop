@@ -2,7 +2,7 @@
 
 clear
 
-echo "welcome to the Grimsby Veg Market!"
+echo "     welcome to the Grimsby Veg Market!"
 echo
 
 function menu(){
@@ -77,7 +77,7 @@ echo
 value=$((Tomato * amount))
 float_convertion "$value"
 order_list+=("$((amount)) Tomatoe(s) $final_bill")
-$((item_counter+=1))
+item_counter=$((++item_counter))
 ;;
 2)
 echo "You have added" $((amount)) "Cabbages to your basket"
@@ -85,7 +85,7 @@ echo
 value=$((Cabbage * amount))
 float_convertion "$value"
 order_list+=("$((amount)) Cabbage(s) $final_bill")
-$((item_counter+=1))
+item_counter=$((++item_counter))
 ;;
 3)
 echo "You have added" $((amount)) "Onions to your basket"
@@ -93,7 +93,7 @@ echo
 value=$((Onion * amount))
 float_convertion "$value"
 order_list+=("$((amount)) Onion(s) $final_bill")
-$((item_counter+=1))
+item_counter=$((++item_counter))
 ;;
 4)
 echo "You have added" $((amount)) "Carrots to your basket"
@@ -101,7 +101,7 @@ echo
 value=$((Carrot * amount))
 float_convertion "$value"
 order_list+=("$((amount)) Carrot(s) $final_bill")
-$((item_counter+=1))
+item_counter=$((++item_counter))
 ;;
 5)
 echo "You have added" $((amount)) "Turnips to your basket"
@@ -109,7 +109,7 @@ echo
 value=$((Turnip * amount))
 float_convertion "$value"
 order_list+=("$((amount)) Turnip(s) $final_bill")
-$((item_counter+=1))
+item_counter=$((++item_counter))
 ;;
 6)
 echo "You have added" $((amount)) "Avaocados to your basket"
@@ -117,7 +117,7 @@ echo
 value=$((Avocado * amount))
 float_convertion "$value"
 order_list+=("$((amount)) Avaocado(s) $final_bill")
-$((item_counter+=1))
+item_counter=$((++item_counter))
 ;;
 *)
 echo "you have entered an invalid entry"
@@ -212,6 +212,9 @@ do
         fi
 
 done
+
+
+
 
 
 
