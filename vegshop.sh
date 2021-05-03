@@ -20,7 +20,6 @@ function menu(){
     echo
 }
 
-
 #amount of items in bag
 item_counter=0
 
@@ -79,7 +78,6 @@ function getDetails(){
 
 
 
-
 #order function
 function addToBasket(){
 
@@ -99,11 +97,78 @@ function addToBasket(){
     echo -n "What Vegtable would you like, enter vegatable code [1-6] ?: "
     read vegCode
 
-
   fi 
   done
 
-  echo
+
+
+
+    case $vegCode in
+        1)
+            getamount
+            echo "You have added" $((amount)) "KG of Tomatoes to your basket"
+            echo
+            value=$((Tomato * amount))
+            float_convertion "$value"
+            order_list+=("$((amount)) Tomatoe(s) $final_bill")
+            item_counter=$((++item_counter))
+        ;;
+        2)
+            getamount
+            echo "You have added" $((amount)) "KG of Cabbages to your basket"
+            echo
+            value=$((Cabbage * amount))
+            float_convertion "$value"
+            order_list+=("$((amount)) Cabbage(s) $final_bill")
+            item_counter=$((++item_counter))
+        ;;
+        3)
+            getamount
+            echo "You have added" $((amount)) "KG of Onions to your basket"
+            echo
+            value=$((Onion * amount))
+            float_convertion "$value"
+            order_list+=("$((amount)) Onion(s) $final_bill")
+            item_counter=$((++item_counter))
+        ;;
+        4)
+            getamount
+            echo "You have added" $((amount)) "KG of Carrots to your basket"
+            echo
+            value=$((Carrot * amount))
+            float_convertion "$value"
+            order_list+=("$((amount)) Carrot(s) $final_bill")
+            item_counter=$((++item_counter))
+        ;;
+        5)
+            getamount
+            echo "You have added" $((amount)) "KG of Turnips to your basket"
+            echo
+            value=$((Turnip * amount))
+            float_convertion "$value"
+            order_list+=("$((amount)) Turnip(s) $final_bill")
+            item_counter=$((++item_counter))
+        ;;
+        6)
+            getamount
+            echo "You have added" $((amount)) "KG of Avaocados to your basket"
+            echo
+            value=$((Avocado * amount))
+            float_convertion "$value"
+            order_list+=("$((amount)) Avaocado(s) $final_bill")
+            item_counter=$((++item_counter))
+        ;;
+        *)
+            echo
+            echo "you have entered an invalid entry"
+            echo
+        ;;
+    esac
+}
+
+function getamount(){
+
+      echo
   echo -n "How many (KG) would you like?: "
   echo
   read amount
@@ -116,7 +181,9 @@ function addToBasket(){
       echo
     done
     
-  while :; do
+    
+
+      while :; do
   if [[ $amount =~ \+?(0|[1-9]\d*)$ ]];then
     break
   else
@@ -131,68 +198,11 @@ function addToBasket(){
 
 
 
-
   fi
   done
-    
 
-
-
-    case $vegCode in
-        1)
-            echo "You have added" $((amount)) "KG of Tomatoes to your basket"
-            echo
-            value=$((Tomato * amount))
-            float_convertion "$value"
-            order_list+=("$((amount)) Tomatoe(s) $final_bill")
-            item_counter=$((++item_counter))
-        ;;
-        2)
-            echo "You have added" $((amount)) "KG of Cabbages to your basket"
-            echo
-            value=$((Cabbage * amount))
-            float_convertion "$value"
-            order_list+=("$((amount)) Cabbage(s) $final_bill")
-            item_counter=$((++item_counter))
-        ;;
-        3)
-            echo "You have added" $((amount)) "KG of Onions to your basket"
-            echo
-            value=$((Onion * amount))
-            float_convertion "$value"
-            order_list+=("$((amount)) Onion(s) $final_bill")
-            item_counter=$((++item_counter))
-        ;;
-        4)
-            echo "You have added" $((amount)) "KG of Carrots to your basket"
-            echo
-            value=$((Carrot * amount))
-            float_convertion "$value"
-            order_list+=("$((amount)) Carrot(s) $final_bill")
-            item_counter=$((++item_counter))
-        ;;
-        5)
-            echo "You have added" $((amount)) "KG of Turnips to your basket"
-            echo
-            value=$((Turnip * amount))
-            float_convertion "$value"
-            order_list+=("$((amount)) Turnip(s) $final_bill")
-            item_counter=$((++item_counter))
-        ;;
-        6)
-            echo "You have added" $((amount)) "KG of Avaocados to your basket"
-            echo
-            value=$((Avocado * amount))
-            float_convertion "$value"
-            order_list+=("$((amount)) Avaocado(s) $final_bill")
-            item_counter=$((++item_counter))
-        ;;
-        *)
-            echo "you have entered an invalid entry"
-            echo
-        ;;
-    esac
 }
+
 
 #function to convert int money into string £XX.XX format
 function float_convertion(){
@@ -276,7 +286,6 @@ do
         shopping=false
         exit
 
-
     
     elif [ "$order" = "B" ] || [ "$order" = "b" ] || [ "$order" = "BUY" ] || [ "$order" = "Buy" ] || [ "$order" = "buy" ]
       then
@@ -301,3 +310,4 @@ do
     fi
     
 done
+
