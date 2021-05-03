@@ -18,8 +18,6 @@ function menu(){
     echo
     echo
     echo
-    
-    
 }
 
 
@@ -52,31 +50,31 @@ phoneNumber=""
 
 #get customer data
 function getDetails(){
-    read -r -p "What is your Name?" name
+    read -r -p "What is your Name? " name
     echo
-    
-    while [ "$name" = "" ] || [ "$name" = " " ]
+
+    while [ "$name" = "" ] || [ "$name" = " " ] 
     do
-        echo "You didnt enter a Name try again"
-        echo
-        read -r -p "What is your Name? " name
-        echo
+    echo "You didnt enter a Name try again"
+    echo
+    read -r -p "What is your Name? " name
+    echo
     done
-    
+
+  read -r -p "What is your phoneNumber? " phoneNumber
+
+  while :; do
+  if [[ $phoneNumber =~ \+?(0|[1-9]\d*)$ ]];then
+    break
+  else
+    echo
+    echo "Invalid amount please enter a valid digit"
+    echo
     read -r -p "What is your phoneNumber? " phoneNumber
-    
-    while :; do
-        if [[ $phoneNumber =~ \+?(0|[1-9]\d*)$ ]];then
-            break
-        else
-            echo
-            echo "Invalid amount please enter a valid digit"
-            echo
-            read -r -p "What is your phoneNumber? " phoneNumber
-            echo
-        fi
-    done
-    
+    echo
+  fi
+  done
+  echo  
 }
 
 
@@ -84,62 +82,62 @@ function getDetails(){
 
 #order function
 function addToBasket(){
-    
+
+  echo
+  echo -n "What Vegtable would you like, enter vegatable code [1-6] ?: "
+  read vegCode
+
+  #while loops to validate user entry and make sure is valid
+  while :; do
+  if [[ $vegCode =~ [1-6] && $vegCode -gt 0 ]];then
+    break
+  else
+
+    echo
+    echo "Invalid entry please enter a number between [1-6]"
     echo
     echo -n "What Vegtable would you like, enter vegatable code [1-6] ?: "
     read vegCode
-    
-    #while loops to validate user entry and make sure is valid
-    while :; do
-        if [[ $vegCode =~ [1-6] && $vegCode -gt 0 ]];then
-            break
-        else
-            
-            echo
-            echo "Invalid entry please enter a number between [1-6]"
-            echo
-            echo -n "What Vegtable would you like, enter vegatable code [1-6] ?: "
-            read vegCode
-            
-            
-        fi
-    done
-    
-    echo
-    echo -n "How many (KG) would you like?: "
-    echo
-    read amount
-    while [ $((amount)) -le 1 ]
+
+
+  fi 
+  done
+
+  echo
+  echo -n "How many (KG) would you like?: "
+  echo
+  read amount
+      while [ $((amount)) -le 1 ]
     do
-        echo "The kg of veg has to be above 1kg"
-        echo
-        echo -n "How many (KG) would you like?: "
-        read amount
-        echo
+      echo "The kg of veg has to be above 1kg"
+      echo
+      echo -n "How many (KG) would you like?: "
+      read amount
+      echo
     done
     
-    while :; do
-        if [[ $amount =~ \+?(0|[1-9]\d*)$ ]];then
-            break
-        else
-            echo
-            echo "Invalid amount please enter a valid digit"
-            echo
-            
-            
-            echo -n "How many (KG) would you like?: "
-            read amount
-            echo
-            
-            
-            
-            
-        fi
-    done
+  while :; do
+  if [[ $amount =~ \+?(0|[1-9]\d*)$ ]];then
+    break
+  else
+    echo
+    echo "Invalid amount please enter a valid digit"
+    echo
+  
+
+    echo -n "How many (KG) would you like?: "
+    read amount
+    echo
+
+
+
+
+  fi
+  done
     
-    
-    
-    
+
+
+
     case $vegCode in
         1)
             echo "You have added" $((amount)) "KG of Tomatoes to your basket"
@@ -202,7 +200,7 @@ function float_convertion(){
     length_of_total=${#1}
     
     if [ $length_of_total -gt 0 ]
-    then
+        then
         pennys=${1:(-2)}
         
         dollars=${1:0:length_of_total-2}
@@ -212,10 +210,10 @@ function float_convertion(){
         dot="."
         
         final_bill=$type$dollars$dot$pennys
-    else
+        else
         printf "%s \n" "Invalid Entry"
         exit
-        
+    
     fi
 }
 
@@ -269,36 +267,37 @@ while [ $shopping == true ]
 do
     read -r -p "Would you like to buy something?(Buy/Checkout/Quit)" order
     
-    if [ "$order" = "Q" ] || [ "$order" = "q" ] || [ "$order" = "Quit" ] || [ "$order" = "QUIT" ] || [ "$order" = "quit" ]
-    then
+    if [ "$order" = "Q" ] || [ "$order" = "q" ] || [ "$order" = "Quit" ] || [ "$order" = "QUIT" ] || [ "$order" = "quit" ]  
+      then
         float_convertion "$total"
         echo
         echo " Thankyou for shopping with Grimsby Market!"
         echo
         shopping=false
         exit
-        
-        
-        
-    elif [ "$order" = "B" ] || [ "$order" = "b" ] || [ "$order" = "Buy" ] || [ "$order" = "buy" ]
-    then
+
+
+    
+    elif [ "$order" = "B" ] || [ "$order" = "b" ] || [ "$order" = "BUY" ] || [ "$order" = "Buy" ] || [ "$order" = "buy" ]
+      then
         
         addToBasket
         total=`expr $total + $value`
         
     elif  [ "$order" = "C" ] || [ "$order" = "c" ] || [ "$order" = "Checkout" ] || [ "$order" = "CHECKOUT" ] || [ "$order" = "checkout" ]
-    then
+      then
         float_convertion "$total"
         echo
         echo
         printbill
+        order_list=()
         
     else
-        echo
-        echo "Sorry $order is an invalid entry Please Try Again "
-        echo
-        
-        
+    echo
+    echo "Sorry $order is an invalid entry Please Try Again "
+    echo
+    
+    
     fi
     
 done
